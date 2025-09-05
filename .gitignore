@@ -1,5 +1,6 @@
 url_shortener.db
 __pycache__/
+*.py[cod]
 .next/
 out/
 node_modules/

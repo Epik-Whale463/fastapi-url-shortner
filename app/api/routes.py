@@ -7,11 +7,16 @@ router = APIRouter()
 
 @router.post("/shorten_url", response_model=schemas.URLInfo)
 def shorten_url(url: schemas.URLCreate, db: Session = Depends(database.get_db)):
-    # Generate unique short code
-    short_code = utils.generate_short_code()
-    while crud.check_short_code_exists(db, short_code):
+    if url.short_code:
+        if crud.check_short_code_exists(db, url.short_code):
+            raise HTTPException(status_code=400, detail="Short code already exists")
+        return crud.create_url(db=db, url=url, short_code=url.short_code)
+    else:
+        # Generate unique short code
         short_code = utils.generate_short_code()
-    return crud.create_url(db=db, url=url, short_code=short_code)
+        while crud.check_short_code_exists(db, short_code):
+            short_code = utils.generate_short_code()
+        return crud.create_url(db=db, url=url, short_code=short_code)
 
 @router.get("/{short_code}")
 def redirect_to_original(short_code: str, db: Session = Depends(database.get_db)):
