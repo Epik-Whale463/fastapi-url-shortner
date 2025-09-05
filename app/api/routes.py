@@ -1,6 +1,10 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from models import models, schemas, crud, database, utils
+import models
+import schemas
+import crud
+import database
+import utils
 from fastapi.responses import RedirectResponse
 
 router = APIRouter()
