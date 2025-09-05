@@ -1,12 +1,12 @@
 from sqlalchemy.orm import Session
 from . import models, schemas
-from datetime import datetime
+from datetime import datetime, UTC
 
 def create_url(db: Session, url: schemas.URLCreate, short_code: str):
     db_url = models.URL(
         original_url = str(url.original_url),
         short_code = short_code,
-        created_at = datetime.utcnow()
+        created_at = datetime.now(UTC)
     )
     
     db.add(db_url)

@@ -13,5 +13,5 @@ class URLInfo(BaseModel):
     short_code:str
     created_at: Optional[datetime] = None
     
-    class Config:
-        orm_mode = True
+    class ConfigDict:
+        from_attributes = True
