@@ -10,7 +10,7 @@ class URL(Base):
     short_code = Column(String, unique=True, index=True, nullable=False)
     created_at = Column(DateTime)
 
-from .database import engine
-from .models import Base
+from app.database import engine
+from app.models import Base
 
 Base.metadata.create_all(bind=engine)
