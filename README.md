@@ -51,9 +51,9 @@
     }
     ```
 
-![alt text](image.png)
+![alt text](images/image.png)
 
 - **To test redirection:**  
     Visit: `http://127.0.0.1:8000/8QNiE2`
 
-![alt text](image-1.png)
+![alt text](images/image-1.png)
